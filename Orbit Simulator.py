@@ -21,9 +21,18 @@ class SpaceDebri:
 		R = ((x2 - x1)**2 + (y2 - y1)**2 + (z2 - z1)**2)**(0.5)
 		return R
 
-	def time_evolve(self)
-		pass
+	def update_position(self):
+		delta_x = (self.velocity[0])*dt
+		delta_y = (self.velocity[1])*dt
+		delta_z = (self.velocity[2])*dt
 
+		new_x = self.position[0] + delta_x
+		new_y = self.position[1] + delta_y
+		new_z = self.position[2] + delta_z
+
+		self.position = [new_x, new_y, new_z] 
+
+		print("The new position is ({},{},{})".format(new_x,new_y,new_z))
 
 	@classmethod
 	def from_string(cls, string_data):
@@ -33,8 +42,4 @@ class SpaceDebri:
 		vel = [float(vel_x),float(vel_y),float(vel_z)]
 		acc = [float(acc_x),float(acc_y),float(acc_z)]
 
-		self.mass = float(mass)
-		self.position = pos
-		self.velocity = vel
-		self.acceleration = acc
-		
+		return cls(float(mass), pos, vel, acc)
