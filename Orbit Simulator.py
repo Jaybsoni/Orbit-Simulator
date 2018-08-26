@@ -32,7 +32,7 @@ class SpaceDebri:
 
 		self.position = [new_x, new_y, new_z] 
 
-		print("The new position is ({},{},{})".format(new_x,new_y,new_z))
+		## print("The new position is ({},{},{})".format(new_x,new_y,new_z)) for debug purposes
 
 	@classmethod
 	def from_string(cls, string_data):
@@ -43,3 +43,27 @@ class SpaceDebri:
 		acc = [float(acc_x),float(acc_y),float(acc_z)]
 
 		return cls(float(mass), pos, vel, acc)
+
+	def update_velocity(self): 
+		delta_x = (self.acceleration[0])*dt
+		delta_y = (self.acceleration[1])*dt
+		delta_z = (self.acceleration[2])*dt
+
+		new_x = self.velocity[0] + delta_x
+		new_y = self.velocity[1] + delta_y
+		new_z = self.velocity[2] + delta_z
+
+		self.velocity = [new_x, new_y, new_z] 
+
+	def collisions(self, lst_pos, Lst, len_lst):
+		pass
+
+	def update_acceleration_from_lst(self, lst_pos, Lst, len_lst):
+		for i in range(0, len_lst):
+			if (i == lst_pos): 
+				pass
+			else:
+				pass
+
+
+
