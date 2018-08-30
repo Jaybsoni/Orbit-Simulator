@@ -1,6 +1,7 @@
 class SpaceDebri: 
 
 	G = (6.67408)*10**(-11) ## Gravitational constant 
+	MassEarth = 
 	dt = 0.0001 			## "small" change in time (sec)
 	ds = 0.0001				## "small" change in position (meters)
 
@@ -33,6 +34,10 @@ class SpaceDebri:
 		self.position = [new_x, new_y, new_z] 
 
 		## print("The new position is ({},{},{})".format(new_x,new_y,new_z)) for debug purposes
+	@staticmethod
+	def mass_to_size(mass):
+		radius = 
+
 
 	@classmethod
 	def from_string(cls, string_data):
