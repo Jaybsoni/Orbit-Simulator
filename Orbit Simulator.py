@@ -4,12 +4,16 @@ class SpaceDebri:
 	dt = 0.0001 			## "small" change in time (sec)
 	ds = 0.0001				## "small" change in position (meters)
 
+	@staticmethod
+	def mass_to_size(mass): # given some space debri with mass it determines its "size"
+		radius = mass/1000 
+
 	def __init__(self, mass, position, velocity, acceleration): # initializes an instance of the SpaceDebri object with its
 		self.mass = mass                           				# mass (float), position (lst of floats),
 		self.position = position                                # velocity (lst of floats), acceleration (lst of floats), and radius (float)
 		self.velocity = velocity
 		self.acceleration = acceleration
-		self.radius = mass_to_size(mass)
+		#self.radius = mass_to_size(mass)
 		
 	def dist(self, other): # calculates the distance between two instances of the spacedebri objects
 		x1 = self.position[0]
@@ -34,9 +38,6 @@ class SpaceDebri:
 		self.position = [new_x, new_y, new_z] 
 
 		## print("The new position is ({},{},{})".format(new_x,new_y,new_z)) for debug purposes
-	@staticmethod
-	def mass_to_size(mass): # given some space debri with mass it determines its "size"
-		radius = mass/1000 
 
 	@classmethod
 	def from_string(cls, string_data): # alternate constructor of instances of space debri (to easily make instances via .txt or .csv files)
@@ -67,7 +68,7 @@ class SpaceDebri:
 		if ((radius1 + radius2) >= distance):
 			return True
 
-	def relative_position_vector(self, other): 
+	def relative_position_vector(self, other): # returns a lst of positions which corresponds to the vector going from self --> other and vice versa 
 		x1 = self.position[0]
 		x2 = other.position[0]
 		y1 = self.position[1]
@@ -75,8 +76,9 @@ class SpaceDebri:
 		z1 = self.position[2]
 		z2 = other.position[2]
 
-		
-
+		S_O = [(x2 - x1), (y2 - y1), (z2 - z1)] 
+		O_S = [-1*S_O[0], -1*S_O[1], -1*S_O[2]]
+		return S_O, O_S
 
 
 	def update_acceleration_from_lst(self, lst_pos, Lst, len_lst):
