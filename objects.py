@@ -1,9 +1,5 @@
 class SpaceDebri():  # Quick Update
 
-	G = 6.67408*10**(-11)  # Gravitational constant
-	dt = 0.0001 			  # "small" change in time (sec)
-	ds = 0.0001				  # "small" change in position (meters)
-
 	@staticmethod
 	def mass_to_size(mass):
 		# given some space debri with mass it determines its "size"
@@ -100,12 +96,3 @@ class SpaceDebri():  # Quick Update
 		S_O = [(x2 - x1), (y2 - y1), (z2 - z1)] 
 		O_S = [-1*S_O[0], -1*S_O[1], -1*S_O[2]]
 		return S_O, O_S
-
-
-	def update_acceleration_from_lst(self, lst_pos, Lst, len_lst):
-		for i in range(0, len_lst): 
-			if i in lst_pos:
-				pass
-			else:
-				pass
-
