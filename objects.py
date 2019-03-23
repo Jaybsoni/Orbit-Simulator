@@ -1,12 +1,6 @@
 class SpaceDebri():  # Quick Update
 
-	@staticmethod
-	def mass_to_size(mass):
-		# given some space debri with mass it determines its "size"
-		radius = mass/1000
-		return radius
-
-	def __init__(self, mass, position, velocity, acceleration):
+	def __init__(self, mass, position, velocity):
 		"""
 		:param mass: float
 		:param position: list of floats
@@ -18,8 +12,6 @@ class SpaceDebri():  # Quick Update
 		self.mass = mass
 		self.position = position
 		self.velocity = velocity
-		self.acceleration = acceleration
-		self.radius = SpaceDebri.mass_to_size(mass)
 		
 	def dist(self, other):
 		"""
@@ -55,13 +47,12 @@ class SpaceDebri():  # Quick Update
 	@classmethod
 	def from_string(cls, string_data):
 		# alternate constructor of instances of space debri (to easily make instances via .txt or .csv files)
-		mass, pos_x, pos_y, pos_z, vel_x, vel_y, vel_z, acc_x, acc_y, acc_z = string_data.split(" ")
+		mass, pos_x, pos_y, pos_z, vel_x, vel_y, vel_z = string_data.split(" ")
 		
 		pos = [float(pos_x), float(pos_y), float(pos_z)]
 		vel = [float(vel_x), float(vel_y), float(vel_z)]
-		acc = [float(acc_x), float(acc_y), float(acc_z)]
 
-		return cls(float(mass), pos, vel, acc, mass_to_size(float(mass)))
+		return cls(float(mass), pos, vel)
 
 	def update_velocity(self):
 		# updates the velocity of the space debri via the acceleration
